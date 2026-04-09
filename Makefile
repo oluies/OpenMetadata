@@ -137,10 +137,21 @@ build-ingestion-base-local:  ## Builds the ingestion DEV docker operator with th
 	$(MAKE) install_dev generate
 	docker build -f ingestion/operators/docker/Dockerfile.ci . -t openmetadata/ingestion-base:local
 
+.PHONY: build-ingestion-base-local2
+build-ingestion-base-local2:  ## Builds the ingestion DEV docker operator with the local ingestion files
+	$(MAKE) install_dev generate
+	docker build -f ingestion/Dockerfile.ci . -t openmetadata/ingestion:local
+
+
 .PHONY: build-ingestion-base-slim-local
 build-ingestion-base-local:  ## Builds the ingestion DEV docker operator with the local ingestion files
 	$(MAKE) install_dev generate
 	docker build -f ingestion/operators/docker/Dockerfile.ci . -t openmetadata/ingestion-base-slim:local --build-arg INGESTION_DEPENDENCY=slim
+
+.PHONY: build-ingestion-base-slim-local2
+build-ingestion-base-local2:  ## Builds the ingestion DEV docker operator with the local ingestion files
+	$(MAKE) install_dev generate
+	docker build -f ingestion/Dockerfile.ci . -t openmetadata/ingestion:local
 
 #Upgrade release automation scripts below
 .PHONY: update_all
